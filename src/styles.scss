@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+
+.bs-datepicker-body table td {
+  color: black !important;
+}
+
+.bs-datepicker-body table th {
+  color: black !important;
+  font-weight: bold !important;
+}
+@import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css";
+.theme-green .bs-datepicker-head {
+  background-color: #ffffff !important;
+}
+
+.bs-datepicker-container {
+  padding: 0px !important;
+}
+.theme-green .bs-datepicker-body table td.week span {
+  color: #5967b1;
+}
+.theme-green .bs-datepicker-body table td span.selected,
+.theme-green .bs-datepicker-body table td.selected span,
+.theme-green .bs-datepicker-body table td span[class*="select-"]:after,
+.theme-green .bs-datepicker-body table td[class*="select-"] span:after {
+  background-color: #5967b1 !important;
+}
+
+h2 {
+  padding-top: 5px;
+}
+
+.bs-datepicker-head button {
+  color: black !important;
+}

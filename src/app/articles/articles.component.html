@@ -1,0 +1,159 @@
+<form [formGroup]="articleFrorm" class="main-form">
+  <div>
+    <div
+      class="container"
+      style="
+    margin-left: 0px;
+    padding-left: 0px;
+"
+    >
+      <div class="row">
+        <div *ngIf="addArtical && addArtical.length" class="col-sm-12">
+          <h2>Artical List</h2>
+          <div class="col-sm-6">
+            <ul *ngFor="let article of addArtical; let i = index">
+              <li class="list-group-item">
+                {{ article.Title }}
+                <a (click)="edit(article.Title)"> &nbsp; Edit</a>
+
+                <a (click)="delet(article.Title)"> &nbsp; Delete</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div *ngIf="!addArtical || addArtical.length == 0" class="col-sm-12">
+          <h2>Artical List</h2>
+          <div class="col-sm-6">
+            <ul>
+              <li class="list-group-item">
+                There Is No Artical
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div
+          style="
+          float:
+          right;
+          margin-right: 32px;
+          "
+          class="form-group"
+        >
+          <button
+            class="btn btn-primary"
+            style="
+    margin-right: 23px;
+"
+            (click)="showArticle()"
+          >
+            Add new Artical
+          </button>
+          <button (click)="back()" class="btn btn-primary">
+            Back
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="addNewArtical">
+    <h2>New Article</h2>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="Title">Title</label>
+            <input
+              type="text"
+              formControlName="Title"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid': submitted && formControl.Title.errors
+              }"
+            />
+            <div
+              *ngIf="submitted && formControl.Title.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="formControl.Title.errors.required">
+                Title is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="Title">DATE</label>
+            <input
+              type="text"
+              placeholder="Select Date"
+              class="form-control txtbox-bg ng-pristine ng-invalid ng-touched"
+              #dp="bsDatepicker"
+              bsDatepicker
+              [(bsValue)]="selectedDate"
+              value="{{ selectedDate | date: 'yyyy-MM-dd' }}"
+              [bsConfig]="{ showWeekNumbers: false }"
+              readonly
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="Contact">Content</label>
+            <textarea
+              formControlName="Content"
+              class="form-control rounded-0"
+              id="Contact"
+              rows="10"
+            ></textarea>
+          </div>
+        </div>
+        <div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <br />
+              <div>
+                <input
+                  style="margin-top: 7px;"
+                  type="file"
+                  (change)="onFileChanged($event)"
+                  #fileInput
+                />
+              </div>
+              <br />
+              <div>
+                <img
+                  *ngFor="let item of base64textString"
+                  src="{{ item }}"
+                  alt=""
+                  id="img"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <button
+                style="float: right"
+                (click)="onSubmit()"
+                class="btn btn-primary"
+              >
+                Save Article
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
